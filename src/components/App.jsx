@@ -7,18 +7,30 @@ function App() {
   return (
     <div className="app">
       Trivia!
-      <Question text={data[questionNumber]["question"]["text"]} />
+      <Question
+        text={data[questionNumber]["question"]["text"]}
+        answerChoices={data[questionNumber]["question"]["choices"]}
+      />
       <NextQuestion />
     </div>
   );
 }
 
 function Question(props) {
-  return <div>{props.text}</div>;
+  return (
+    <div>
+      {props.text}
+      <Answer answerChoices={props.answerChoices} />
+    </div>
+  );
 }
 
 function NextQuestion() {
   return <button>Next Question</button>;
+}
+
+function Answer(props) {
+  return <div>{props.answerChoices}</div>;
 }
 
 export default App;
