@@ -3,9 +3,12 @@ import "../css/App.css";
 import data from "../sample_data.json";
 
 function App() {
-  const [answerDisplayed, setAnswerDisplayed] = useState(true);
+  const [answerDisplayed, setAnswerDisplayed] = useState(false);
   // let answerDisplayed = false;
   var questionNumber = 0;
+  function fun() {
+    setAnswerDisplayed(true);
+  }
   return (
     <div className="app">
       Trivia!
@@ -16,7 +19,15 @@ function App() {
         />
       </div>
       <div>
-        <CorrectAnswer shouldDisplay={answerDisplayed} />
+        <button onClick={fun}>Click for the correct answer</button>
+        <CorrectAnswer
+          shouldDisplay={answerDisplayed}
+          answer={
+            data[questionNumber]["question"]["choices"][
+              data[questionNumber]["question"]["correct_choice_index"]
+            ]
+          }
+        />
       </div>
       <div>
         <NextQuestion />
@@ -37,17 +48,11 @@ function Question(props) {
 function CorrectAnswer(props) {
   let answerText;
   if (props.shouldDisplay) {
-    answerText = "the answer";
+    answerText = props.answer;
   } else {
     answerText = "unanswered";
   }
-
-  return (
-    <div>
-      <button>Click for the correct answer</button>
-      <div>The correct answer is {answerText}</div>
-    </div>
-  );
+  return <div>The correct answer is {answerText}</div>;
 }
 
 function NextQuestion() {
