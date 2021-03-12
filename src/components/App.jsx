@@ -4,11 +4,17 @@ import data from "../sample_data.json";
 
 function App() {
   const [answerDisplayed, setAnswerDisplayed] = useState(false);
-  // let answerDisplayed = false;
-  var questionNumber = 0;
+
   function fun() {
     setAnswerDisplayed(true);
   }
+  const [questionNumber, setQuestionNumber] = useState(0);
+
+  function questionTracker() {
+    setQuestionNumber(questionNumber + 1); // 0
+    // setQuestionNumber(0)
+  }
+
   return (
     <div className="app">
       Trivia!
@@ -30,7 +36,7 @@ function App() {
         />
       </div>
       <div>
-        <NextQuestion />
+        <button onClick={questionTracker}>Next Question</button>
       </div>
     </div>
   );
@@ -53,10 +59,6 @@ function CorrectAnswer(props) {
     answerText = "unanswered";
   }
   return <div>The correct answer is {answerText}</div>;
-}
-
-function NextQuestion() {
-  return <button>Next Question</button>;
 }
 
 function Answer(props) {
