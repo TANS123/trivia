@@ -11,7 +11,8 @@ function App() {
   const [questionNumber, setQuestionNumber] = useState(0);
 
   function questionTracker() {
-    setQuestionNumber(questionNumber + 1); // 0
+    setQuestionNumber(questionNumber + 1);
+    setAnswerDisplayed(false); // 0
     // setQuestionNumber(0)
   }
 
@@ -64,7 +65,7 @@ function CorrectAnswer(props) {
 function Answer(props) {
   return (
     <div>
-      <div>{props.answerChoices[0]}</div>
+      <button>{props.answerChoices[0]}</button>
       <div>{props.answerChoices[1]}</div>
       <div>{props.answerChoices[2]}</div>
       <div>{props.answerChoices[3]}</div>
